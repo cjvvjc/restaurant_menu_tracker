@@ -15,25 +15,26 @@ exports.getLogout = (req, res) => {
 }
 
 exports.postLogin = async (req, res) => {
-    let email = req.body.emailInput
-    let pass = req.body.pwdInput
-    let loginSuccess = false
-    let sesh = req.session
-    sesh.loggedIn = false
+    let email = req.body.emailInput;
+    let pass = req.body.pwdInput;
+    let loginSuccess = false;
+    let sesh = req.session;
+    sesh.loggedIn = false;
 
-    let users = schemas.users
-    let qry = {email: email}
+    let users = schemas.users;
+    let qry = {email: email};
 
         //looking in database to find matching email address , if found, take password entered and checks it against password stored
-    if(email !== '' && pass !== '') {
-        let userResult = await users.findOne(qry)
+    if(email != '' && pass != '') {
+        let usersResult = await users.findOne(qry)
         .then(async(data) => {
+            console.log(data)
             if (data) {
                 let passResult = await bcrypt.compare(pass, data.pwd)
                 .then((isMatch) => {
                     if(isMatch) {
-                        sesh.loggedIn = true
-                        loginSuccess = true
+                        sesh.loggedIn = true;
+                        loginSuccess = true;
                     }
                     
                 })

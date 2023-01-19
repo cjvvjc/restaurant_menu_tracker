@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const schema = mongoose.Schema;
 
 let menuSchema = new mongoose.Schema({
     name: {type: String, require: true},
@@ -9,7 +10,7 @@ let menuSchema = new mongoose.Schema({
 
 let usersSchema = new mongoose.Schema({
     email: {type: String, require: true},
-    password: {type: String, require: true}, 
+    pwd: {type: String, require: true}, 
     entryDate: {type: Date, default: Date.now}
 })
 

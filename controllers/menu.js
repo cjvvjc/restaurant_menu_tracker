@@ -23,7 +23,7 @@ module.exports = {
                     err ='Invalid ID'
                 }
 
-                res.render('menu', {title: 'Edit Menu', loggedIn: sesh.loggedIn, error: err})
+                res.render('menu', {title: 'Edit Menu', item: itemData, loggedIn: sesh.loggedIn, error: err})
             })
         }
     },
@@ -35,7 +35,7 @@ module.exports = {
         } else {
             let menu = schemas.menu
             let menuId = req.params.id
-            let qry = {_id:id}
+            let qry = {_id:menuId}
             let deleteResult = await menu.deleteOne(qry)
             res.redirect('/')
         }
@@ -87,7 +87,7 @@ module.exports = {
                 //check database to see if something with the same name doesn't already exist, then create new menu and save
                 if(!menuData) {
                     let newMenu = new schemas.menu({
-                        name: nemuName,
+                        name: menuName,
                         icon: menuIcon,
                         menuUrl: menuUrl
                     })

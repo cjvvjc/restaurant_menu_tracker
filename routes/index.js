@@ -5,6 +5,6 @@ const indexController = require('../controllers/index')
 // const { ensureAuth, ensureGuest } = require('../middleware/auth')
 
 router.get('/', indexController.getHome)
-router.post('/q', indexController.getSerach)
+router.post('/q', indexController.getSearch)
 
 module.exports = router
